@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import api from "../utils/api";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ const LoginPage = () => {
     setError(null);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await api.post("/auth/login", {
         email,
         password,
       });
@@ -24,7 +24,7 @@ const LoginPage = () => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error("Login error:", err);
       setError(err.response?.data?.message || "Login failed");
     }
   };
@@ -43,6 +43,7 @@ const LoginPage = () => {
             required
           />
         </div>
+
         <div>
           <label htmlFor="password">Password</label>
           <input
@@ -53,9 +54,12 @@ const LoginPage = () => {
             required
           />
         </div>
+
         <button type="submit">Login</button>
       </form>
+
       {error && <p className="error-message">{error}</p>}
+
       <p>
         Don't have an account? <Link to="/register">Register here</Link>
       </p>

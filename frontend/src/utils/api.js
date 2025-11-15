@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const base = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const api = axios.create({
-  baseURL: "https://college-event-backend-2td2.onrender.com/api",
+  baseURL: `${base}/api`,
 });
 
 api.interceptors.request.use(
@@ -12,9 +14,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 export default api;

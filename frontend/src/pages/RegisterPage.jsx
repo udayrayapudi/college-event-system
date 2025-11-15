@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import api from "../utils/api";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -18,7 +18,7 @@ const RegisterPage = () => {
     setError(null);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await api.post("/auth/register", {
         username,
         email,
         password,
@@ -28,7 +28,7 @@ const RegisterPage = () => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error("Register error:", err);
       setError(err.response?.data?.message || "Registration failed");
     }
   };
@@ -47,6 +47,7 @@ const RegisterPage = () => {
             required
           />
         </div>
+
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -57,6 +58,7 @@ const RegisterPage = () => {
             required
           />
         </div>
+
         <div>
           <label htmlFor="password">Password</label>
           <input
@@ -68,6 +70,7 @@ const RegisterPage = () => {
             required
           />
         </div>
+
         <div>
           <label htmlFor="role">Role</label>
           <select
@@ -79,9 +82,12 @@ const RegisterPage = () => {
             <option value="coordinator">Coordinator</option>
           </select>
         </div>
+
         <button type="submit">Register</button>
       </form>
+
       {error && <p className="error-message">{error}</p>}
+
       <p>
         Already have an account? <Link to="/login">Login here</Link>
       </p>
