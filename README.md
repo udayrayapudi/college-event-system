@@ -23,14 +23,15 @@ The goal was to design a system that is intuitive, reliable, and capable of hand
 
 The application follows a **three-tier architecture**:
 
-- **Frontend (Client Layer)** – Handles user interaction  
-- **Backend (API Layer)** – Processes business logic  
-- **Database (Data Layer)** – Stores and manages data  
+- **Frontend (Client Layer)** – Built using React.js to provide an interactive and responsive user interface for event browsing, registration, and dashboard management    
+- **Backend (API Layer)** – Developed with Node.js and Express.js to handle authentication, business logic, role-based access control, and event management operations through RESTful APIs   
+- **Database (Data Layer)** – Powered by MongoDB to securely store and manage user accounts, event details, registrations, and application data with efficient retrieval and scalability    
 
 📌 *Insert your architecture diagram below*
 
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/da74d6fc-2f08-4673-9bd4-c186c795224b" />
 
+---
 
 ## 🔁 Application Flow (How It Works)
 
@@ -90,7 +91,7 @@ This system was designed with scalability and maintainability in mind:
 ---
 
 ## 📂 Project Structure  
-
+```plaintext
 college-event-management/
 │
 ├── backend/                     # Node.js + Express API
@@ -113,7 +114,7 @@ college-event-management/
 ├── .env.example                # Environment variables template
 ├── README.md
 └── package.json               # (optional root config if used)
-
+```
 ## 🔐 Backend Responsibilities  
 
 - Handles user authentication (Login/Signup)  
