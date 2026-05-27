@@ -115,6 +115,8 @@ college-event-management/
 ├── README.md
 └── package.json               # (optional root config if used)
 ```
+---
+
 ## 🔐 Backend Responsibilities  
 
 - Handles user authentication (Login/Signup)  
